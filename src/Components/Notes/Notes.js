@@ -7,7 +7,7 @@ const Notes = () => {
 
     let notes = getNotes();
 
-    const {noteid, title, description} = useParams();
+    const {noteid} = useParams();
 
     const filterNotes = (id) => {
         let selectedNote = false;
@@ -21,14 +21,23 @@ const Notes = () => {
         return selectedNote;
     }
 
-    const selectedNote = filterNotes(noteid, title, description);
+    const selectedNote = filterNotes(noteid);
 
     const renderNotes = (notes) => (
         <ul>
             {
                 notes.map((note, key) => (
                     <li key ={key}>
-                        <Link to={`/notes/${note.id}`}>{note.title}</Link>
+                        {
+                            {selectedNote}?
+                            <div>
+                                <h1>{note.title}</h1>
+                                <p>{note.description}</p>
+                            </div>
+                            :
+                            <Link to={`/notes/${note.id}`}>{note.title}</Link>
+                        }
+                        
                     </li>
                 ))
             }
@@ -39,8 +48,6 @@ const Notes = () => {
         <div className = "Notes">
             <h1>Notes</h1>
             {renderNotes(selectedNote || notes)}
-            <h1>{noteid}</h1>
-            <p>{description}</p>
         </div>
     );
 }

@@ -6,11 +6,13 @@ import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Notes from './Components/Notes/Notes';
+import CharacterUI from './Components/CharacterUI/CharacterUI';
 
 const AppRoutes = () => (
     <App>
         <Routes>
             <Route path= "/" element={<Home/>} />
+            <Route path= "/character" element={<CharacterUI/>} />
             <Route path= "/about" element={<About/>} />
             <Route path= "/contact" element={<Contact/>} />
             <Route path= "*" element={<Error404/>} />
